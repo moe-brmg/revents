@@ -8,7 +8,7 @@ import {
   Icon,
 } from "semantic-ui-react"
 
-export default function HomePage() {
+export default function HomePage({ history }) {
   return (
     <Segment inverted textAlign="center" vertical className="masthead">
       <Container>
@@ -19,7 +19,7 @@ export default function HomePage() {
             style={{ marginBottom: 12 }}
           />
         </Header>
-        <Button size="huge" inverted>
+        <Button onClick={() => history.push("/events")} size="huge" inverted>
           Get started
           <Icon name="right arrow" inverted />
         </Button>
