@@ -6,6 +6,7 @@ import EventDetailedPage from "../../features/events/eventDetails/EventDetailedP
 import EventForm from "../../features/events/eventForm/EventForm"
 import HomePage from "../../features/home/HomePage"
 import NavBar from "../../features/nav/NavBar"
+import SandBox from "../../features/sandbox/Sandbox"
 import ModalManger from "../common/modals/ModalManager"
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
                 component={EventForm}
                 key={key}
               />
+              <Route path="/sandbox" component={SandBox} />
             </Container>
           </>
         )}
