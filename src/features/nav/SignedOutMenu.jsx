@@ -19,7 +19,7 @@ function SignedOutMenu({ setAuthenticated }) {
         inverted
         content="Register"
         style={{ marginLeft: "0.5em" }}
-        onClick={() => dispatch(signOutUser())}
+        onClick={() => dispatch(openModal({ modalType: "RegisterForm" }))}
       />
     </Menu.Item>
   )

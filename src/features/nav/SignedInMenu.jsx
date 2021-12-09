@@ -1,21 +1,31 @@
 import React from "react"
-import { useDispatch, useSelector } from "react-redux"
+import { useSelector } from "react-redux"
 import { Link, useHistory } from "react-router-dom"
+import { toast } from "react-toastify"
 import { Menu, Image, Dropdown } from "semantic-ui-react"
-import { signOutUser } from "../auth/authActions"
+import { signOutFirebase } from "../../app/firestore/firebaseService"
 
 function SignedInMenu() {
-  const dispatch = useDispatch()
-  const { currentUser } = useSelector((state) => state.auth)
+  const { currentUserProfile } = useSelector((state) => state.profile)
   const history = useHistory()
+
+  async function handleSignOut() {
+    try {
+      await signOutFirebase()
+      history.push("/")
+    } catch (error) {
+      toast.error(error.message)
+    }
+  }
+
   return (
     <Menu.Item position="right">
       <Image
         avatar
         spaced="right"
-        src={currentUser.photoURL || "assets/user.png"}
+        src={currentUserProfile?.photoURL || "assets/user.png"}
       />
-      <Dropdown pointing="top left" text={currentUser.email || "test"}>
+      <Dropdown pointing="top left" text={currentUserProfile?.displayName}>
         <Dropdown.Menu>
           <Dropdown.Item
             as={Link}
@@ -23,15 +33,23 @@ function SignedInMenu() {
             text="Create Event"
             icon="plus"
           />
-          <Dropdown.Item to="My profile" icon="user" text="My Profile" />
+          <Dropdown.Item
+            as={Link}
+            to={`/profile/${currentUserProfile?.id}`}
+            icon="user"
+            text="My profile"
+          />
+          <Dropdown.Item
+            as={Link}
+            to="/account"
+            icon="settings"
+            text="My account"
+          />
           <Dropdown.Item
             to="Sign out"
             icon="power"
             text="Sign Out"
-            onClick={() => {
-              dispatch(signOutUser())
-              history.push("/")
-            }}
+            onClick={handleSignOut}
           />
         </Dropdown.Menu>
       </Dropdown>
