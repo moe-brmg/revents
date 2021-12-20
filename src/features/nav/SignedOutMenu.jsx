@@ -2,7 +2,6 @@ import React from "react"
 import { Button, Menu } from "semantic-ui-react"
 import { openModal } from "../../app/common/modals/modalReducer"
 import { useDispatch } from "react-redux"
-import { signOutUser } from "../auth/authActions"
 
 function SignedOutMenu({ setAuthenticated }) {
   const dispatch = useDispatch()

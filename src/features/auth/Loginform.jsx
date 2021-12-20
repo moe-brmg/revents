@@ -6,7 +6,7 @@ import MyTextInput from "../../app/common/form/MyTextInput"
 import { Button, Label } from "semantic-ui-react"
 import { useDispatch } from "react-redux"
 import { closeModal } from "../../app/common/modals/modalReducer"
-import signInWithEmail from "../../app/firestore/firebaseService"
+import { signInWithEmail } from "../../app/firestore/firebaseService"
 
 export default function LoginForm() {
   const dispatch = useDispatch()
