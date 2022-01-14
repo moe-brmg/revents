@@ -72,7 +72,7 @@ export default function PhotoUploadWidget({ setEditMode }) {
           <>
             <div
               className="img-preview"
-              style={{ minHeight: 300, minWidth: 300, overflow: "hidden" }}
+              style={{ minHeight: 200, minWidth: 200, overflow: "hidden" }}
             />
             <Button.Group>
               <Button
